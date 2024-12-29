@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "libraryitemissue";
+}
+
+<h2>libraryitemissue</h2>
+
+
+
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Issue Book Selection</h3>
+
+            <!-- Student Dropdown -->
+            <div class="mb-3">
+                <label  class="form-label">Select Student</label>
+                <select class="form-control" id="studentId1" >
+                    <option value="0">-- Select Student --</option>
+                    <option value="1">John Doe</option>
+                    <option value="2">Jane Smith</option>
+                    <option value="3">Alice Johnson</option>
+                </select>
+            </div>
+
+            <!-- Book Dropdown -->
+            <div class="mb-3">
+                <label for="bookId" class="form-label">Select Book</label>
+                <select class="form-control" id="bookId" >
+                    <option value="">-- Select Book --</option>
+                    <option value="101">The Great Gatsby</option>
+                    <option value="102">To Kill a Mockingbird</option>
+                    <option value="103">1984</option>
+                </select>
+            </div>
+
+            <!-- Issue Type Dropdown -->
+            <div class="mb-3">
+                <label for="issueType" class="form-label">Select Issue Type</label>
+                <select class="form-control" id="issueType" >
+                    <option value="">-- Select Issue Type --</option>
+                    <option value="Issue">Issue</option>
+                    <option value="Return">Return</option>
+
+                </select>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<button    id="#save"  onclick="save_edit();"  class="btn btn-primary">Primary</button>
+<table id="dtExample" class="display">
+    <thead>
+        <tr>
+            <th>Sr.</th>
+            <th>student name </th>
+            <th>Issue date </th>
+
+            <th>Return date </th>
+            <th>book code </th>
+            <th>status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*<tr>
+           
+        </tr>
+        <tr>
+           
+        </tr>*@
+    </tbody>
+</table>
+
+
+
+
+
+
+

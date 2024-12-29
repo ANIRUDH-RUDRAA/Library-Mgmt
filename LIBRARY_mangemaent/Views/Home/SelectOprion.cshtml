@@ -1,0 +1,41 @@
+﻿@model IEnumerable< LIBRARY_mangemaent.Models.dashbord>
+@{
+    ViewBag.Title = "SelectOprion";
+}
+
+<h2>Select options </h2>
+
+<h2>Welcome to the MVC Application make by Anirudh sharma (mob.9548534409)</h2>
+
+<p>
+    <a href="@Url.Action("Index", "Home")">Registrer Student </a>
+</p>
+<p>
+    <a href="@Url.Action("Book", "Home")">Enter book </a>
+</p>
+<p>
+    <a href="@Url.Action("libraryitemissue", "Home")">Library Item Issue </a>
+</p>
+
+@foreach (var i in Model)
+{
+
+
+    <label>total student</label>
+    <p>
+        <a>@i.student_count</a>
+    </p>
+
+    <label>total book </label>
+    <p>
+        <a>@i.book_count</a>
+    </p>
+
+    <label>Issue book </label>
+    <p>
+        <a>@i.issue_count</a>
+    </p>
+
+
+}
+

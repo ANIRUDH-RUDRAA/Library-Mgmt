@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+
+
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+  
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Library management (Anirudh Sharma )", "SelectOprion", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    <li>@Html.ActionLink("BookList", "BookList", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+           
+
+
+            $.ajax({
+                type: "get",
+                url: 'getTbaledata',
+               
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+
+                    debugger;
+
+                    fnLoadDataTableInstance(result);
+
+                }
+            });
+
+
+
+
+
+        })
+        function fnLoadDataTableInstance(result) {
+            var dataSource = result;
+            ////id	Student_id	Issue_date	return_date	type	book_id
+          
+            $('#dtExample').DataTable({
+                dom: 'Bfrtip',
+                data: dataSource,
+                columns: [
+                    {
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    { data: 'name'},
+                    { data: 'issue_date' },
+                    { data: 'return_date' },
+                    { data: 'bookname' },
+                    { data: 'type' }
+                     
+                ],
+
+                "paging": true,
+                "info": true,
+                "language": {
+                    "emptyTable": "No data available"
+                },
+                "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                    $("td:first", nRow).html(iDisplayIndex + 1);
+                    return nRow;
+                },
+            })
+        }
+
+
+
+
+
+        function save_edit() {
+            debugger;
+
+            var selectedOption = $("#studentId1 option:selected");
+            var selectedValue = selectedOption.val();
+            var selectedText = selectedOption.text();
+            var data = {
+                Student_id: selectedValue,
+                type: $("#issueType").val(),
+                book_id: $("#bookId").val()
+            };
+            console.log(data);
+
+            if (data.book_id != '' && data.Student_id != '' && data.type != "") {
+
+
+
+                $.ajax({
+                    type: "get",
+                    url: 'save_or_edit',
+                    data: data,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        alert(result);
+
+                        //debugger;
+
+                        //if (result == 1) {
+                        //    alert("data save");
+                        //}
+                        //else if (result == 2) {
+
+                        //    alert("no book Present");
+
+                        //}
+                        //else {
+                        //    alert("Not save");
+                        //}
+
+                    }
+                });
+
+
+            }
+            else {
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function () {
+
+
+
+            $.ajax({
+                type: "Get",
+                url: "lidbrarydatafprbind",
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    debugger;
+
+                    var op = "";
+                    for (var i = 0; i < result.data.length; i++) {
+                        op += `<option  value="${result.data[i].id}"  >${result.data[i].name}</option>`;
+                    }
+                    $("#studentId1").append(op);
+                    var ot = "";
+                    for (var i = 0; i < result.data2.length; i++) {
+                        ot += `<option value="${result.data2[i].id}">${result.data2[i].name}</option>`;
+
+                    }
+
+                    $("#bookId").append(ot);
+
+
+
+
+
+
+
+
+
+
+                }
+            });
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+

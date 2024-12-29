@@ -1,0 +1,40 @@
+﻿@model LIBRARY_mangemaent.Models.Book 
+
+
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>  Insert Book</h2>
+
+
+
+
+
+@using (Html.BeginForm("Book_save_or_edit", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.id)
+
+    <span>Enter book  Name:</span>
+    @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+    <br />
+
+    <span>Enter bookcode :</span>
+    @Html.TextBoxFor(m => m.bookcode, new { @class = "form-control" })
+    <br />
+
+    <span>Enter Book quantity :</span>
+    @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+    <br />
+
+    <input class="btn btn-primary" id="Submit" type="submit" value="Submit" />
+}
+
+<br />
+<br />
+<br />
+ 
+
+
+

@@ -1,0 +1,34 @@
+﻿@model LIBRARY_mangemaent.Models.student
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+<h1>Register Student</h1>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.id)
+
+    <span>Enter Your Name:</span>
+    @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+    <br />
+
+    <span>Enter Your Email:</span>
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    <br />
+
+    <span>Enter Your Mobile:</span>
+    @Html.TextBoxFor(m => m.mobile, new { @class = "form-control" })
+    <br />
+
+    <input class="btn btn-primary" id="Submit" type="submit" value="Submit" />
+}
+
+<br />
+<br />
+<br />
+

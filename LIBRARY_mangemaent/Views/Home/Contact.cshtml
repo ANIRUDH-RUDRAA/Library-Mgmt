@@ -1,0 +1,38 @@
+﻿@model IEnumerable <LIBRARY_mangemaent.Models.student >
+
+
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.id</td>
+                <td>@student.name</td>
+                <td>@student.Email</td>
+                <td>@student.mobile</td>
+                <td>
+                    @Html.ActionLink("Edit", "Index1", new { id = student.id }) |
+                    @Html.ActionLink("Delete", "delete_student", new { id = student.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
